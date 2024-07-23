@@ -36,7 +36,7 @@ const Messages: FC<MessagesProps> = ({
           ...message,
           text: decryptedMessage,
         }
-      setMessages((prev) => [newMessage, ...prev])
+      setMessages((prev) => [message, ...prev])
     }
 
     pusherClient.bind('incoming-message', messageHandler)
