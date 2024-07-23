@@ -1,3 +1,4 @@
+import { decryptMessage } from '@/helpers/encrypt'
 import { getFriendsByUserId } from '@/helpers/get-friends-by-user-id'
 import { fetchRedis } from '@/helpers/redis'
 import { authOptions } from '@/lib/auth'
@@ -25,9 +26,12 @@ const page = async ({}) => {
 
       const lastMessage = JSON.parse(lastMessageRaw) as Message
 
+      const decryptedMessage = decryptMessage(lastMessage.text)
+      const newLastMessage = { ...lastMessage, text: decryptedMessage } 
+
       return {
         ...friend,
-        lastMessage,
+        lastMessage: newLastMessage,
       }
     })
   )
