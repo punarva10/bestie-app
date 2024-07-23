@@ -26,7 +26,7 @@ const page = async ({}) => {
 
       const lastMessage = JSON.parse(lastMessageRaw) as Message
 
-      const decryptedMessage = decryptMessage(lastMessage.text)
+      const decryptedMessage = await decryptMessage(lastMessage.text)
       const newLastMessage = { ...lastMessage, text: decryptedMessage } 
 
       return {
